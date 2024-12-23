@@ -1,0 +1,16 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="bg-white shadow-md rounded-lg p-4 w-96 mb-4">
+    <h2 class="text-xl font-bold mb-2">{{ product.name }}</h2>
+    <p class="text-gray-700">No: {{ product.no }}</p>
+    <p class="text-gray-700">Price: {{ product.price }}</p>
+    <p class="text-gray-700">Stock: {{ product.stock }}</p>
+    <p class="text-gray-700">Create Date: {{ product.createDateTime }}</p>
+    <p class="text-gray-700">Update Date: {{ product.updateDateTime }}</p>
+    <div class="flex space-x-4">
+      <button class="bg-green-500 text-white p-3 rounded mt-4" (click)="navigateToEditProduct()">Edit</button>
+      <button class="bg-red-500 text-white p-2 rounded mt-4" (click)="onDelete()">Delete</button>
+
+    </div>
+    <app-confirm-modal *ngIf="showModal" message="Are you sure you want to delete this product?" (confirm)="onConfirmDelete()" (cancel)="onCancelDelete()"></app-confirm-modal>
+  </div>
+</div>

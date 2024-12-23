@@ -1,0 +1,30 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" placeholder="name" class="border p-2 w-full rounded" />
+    <div *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid" class="text-red-500">
+      Name is required.
+    </div>
+
+    <label for="price">Price</label>
+    <input id="price" type="text" formControlName="price" placeholder="price" class="border p-2 w-full rounded" />
+    <div *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid" class="text-red-500">
+      <div *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</div>
+      <div *ngIf="productForm.get('price')?.errors?.['pattern']">Price must be a valid number.</div>
+    </div>
+
+    <label for="stock">Stock</label>
+    <input id="stock" type="text" formControlName="stock" placeholder="stock" class="border p-2 w-full rounded" />
+    <div *ngIf="productForm.get('stock')?.touched && productForm.get('stock')?.invalid" class="text-red-500">
+      <div *ngIf="productForm.get('stock')?.errors?.['required']">Stock is required.</div>
+      <div *ngIf="productForm.get('stock')?.errors?.['pattern']">Stock must be a valid number.</div>
+    </div>
+
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+      Save product
+    </button>
+    <button type="button" (click)="goBack()" class="bg-gray-500 text-white p-2 rounded mt-2 w-full">
+      Back to Home
+    </button>
+  </div>
+</form>
