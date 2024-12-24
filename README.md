@@ -29,8 +29,31 @@ This project of product service includes a frontend (Angular) and Tailwind, back
     - Frontend: [http://localhost:4200](http://localhost:4200)
     - Backend API: [http://localhost:3000/api](http://localhost:3000/api)
 
-## Stopping the Services
+## Alternative Flow
 
-```bash
-docker-compose down
-```
+1. **Install Backend Dependencies**
+    ```bash
+    cd backend
+    npm install
+    ```
+
+2. **Start MongoDB Service**
+    ```bash
+    docker-compose up -d mongodb
+    ```
+
+3. **Run Backend**
+    ```bash
+    npm run start:dev
+    ```
+
+4. **Install Frontend Dependencies**
+    ```bash
+    cd ../frontend
+    npm install
+    ```
+
+5. **Run Frontend**
+    ```bash
+    ng serve --port 4200
+    ```
