@@ -11,7 +11,7 @@ This project of product service includes a frontend (Angular) and Tailwind, back
 
 1. **Clone the Repository**
     ```bash
-    git clone (https://github.com/monnatdev/product-app.git)
+    git clone https://github.com/monnatdev/product-app.git
     cd product-app
     ```
 
