@@ -21,9 +21,9 @@ export class ProductService {
         }
     }
 
-    public async getAllProducts(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number): Promise<Product[]> {
+    public async getAllProducts(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number, search: string): Promise<Product[]> {
         try {
-            const products = await this.productRepository.getAll(sortBy, sortOrder, page, limit);
+            const products = await this.productRepository.getAll(sortBy, sortOrder, page, limit, search);
             return products.map(product => ({
                 ...product.toObject(), 
                 createDateTime: this.formatDate(product.createDateTime),
@@ -43,7 +43,7 @@ export class ProductService {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
-            hour12: false, // Use 24-hour format
+            hour12: false, 
         };
         return new Intl.DateTimeFormat('en-GB', options).format(new Date(date)).replace(',', '');
     }

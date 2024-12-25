@@ -14,8 +14,9 @@ export class ProductRepository {
         return data;
     }
 
-    public async getAll(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number): Promise<IProductDocument[]> {
-        return this.productRepository.find({ status: 'active' })
+    public async getAll(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number, search: string): Promise<IProductDocument[]> {
+        const query = { status: 'active', name: { $regex: search, $options: 'i' } };
+        return this.productRepository.find(query)
             .sort({ [sortBy]: sortOrder === 'asc' ? 1 : -1 })
             .skip((page - 1) * limit)
             .limit(limit)

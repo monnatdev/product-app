@@ -33,7 +33,8 @@ class ProductController {
             const sortOrder = req.query.sortOrder as 'asc' | 'desc' || 'asc';
             const page = parseInt(req.query.page as string) || 1;
             const limit = parseInt(req.query.limit as string) || 10;
-            const products = await this.productService.getAllProducts(sortBy, sortOrder, page, limit);
+            const search = req.query.search as string || '';
+            const products = await this.productService.getAllProducts(sortBy, sortOrder, page, limit, search);
             res.status(200).json(products);
         } catch (error) {
             res.status(500).json({ message: error instanceof Error ? error.message : 'An unknown error occurred' });

@@ -1,6 +1,7 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from '../../@Core/model/product.model';
 import { ProductComponent } from "../product/product.component";
@@ -10,7 +11,7 @@ import { ProductComponent } from "../product/product.component";
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [ProductComponent, NgFor, NgClass, NgIf]
+  imports: [ProductComponent, NgFor, NgClass, NgIf, FormsModule]
 })
 export class HomeComponent {
 
@@ -19,6 +20,7 @@ export class HomeComponent {
   sortOrder: 'asc' | 'desc' = 'asc';
   page: number = 1;
   limit: number = 10;
+  search: string = '';
 
   constructor(private router: Router, private http: HttpClient) {
     this.fetchProducts();
@@ -44,8 +46,10 @@ export class HomeComponent {
       sortBy: this.sortBy,
       sortOrder: this.sortOrder,
       page: this.page.toString(),
-      limit: this.limit.toString()
+      limit: this.limit.toString(),
+      search: this.search
     };
+    console.log(params,"params")
     this.http.get<Product[]>('http://localhost:3000/api/products', { params }).subscribe(
       {
         next: (products) => {
@@ -55,6 +59,7 @@ export class HomeComponent {
           console.error('Error fetching products', error);
         }
       });
+      console.log(this.products,"products")
   }
 
   changeSortOrder(sortBy: string) {
@@ -69,6 +74,11 @@ export class HomeComponent {
 
   changePage(page: number) {
     this.page = page;
+    this.fetchProducts();
+  }
+
+  onSearch() {
+    this.page = 1;
     this.fetchProducts();
   }
 }

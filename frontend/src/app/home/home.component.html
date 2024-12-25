@@ -7,6 +7,14 @@
     </button>
   </div>
   <div class="mb-4 flex space-x-2">
+    <input 
+      type="text" 
+      placeholder="Search by name" 
+      [(ngModel)]="search" 
+      (input)="onSearch()" 
+      class="p-2 border rounded w-full" />
+  </div>
+  <div class="mb-4 flex space-x-2">
     <h3 class="text-2xl font-bold mb-2">List of product</h3>
     <button class="bg-orange-400 text-black p-2 rounded" (click)="changeSortOrder('no')">Sort by No</button>
   </div>
