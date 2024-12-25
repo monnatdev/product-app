@@ -11,8 +11,8 @@ This project of product service includes a frontend (Angular) and Tailwind, back
 
 1. **Clone the Repository**
     ```bash
-    git clone <repository-url>
-    cd <repository-folder>
+    git clone (https://github.com/monnatdev/product-app.git)
+    cd product-app
     ```
 
 2. **Start the Services**
@@ -20,12 +20,14 @@ This project of product service includes a frontend (Angular) and Tailwind, back
     docker-compose up -d
     ```
 
-3. **Verify Ports**
+## Ports and URLs
+
+1. **Ports**
     - Backend API: [http://localhost:3000](http://localhost:3000)
     - Frontend: [http://localhost:4200](http://localhost:4200)
     - MongoDB: Port 27017 (internal)
 
-4. **Access the Application**
+2. **Access the Application**
     - Frontend: [http://localhost:4200](http://localhost:4200)
     - Backend API: [http://localhost:3000/api](http://localhost:3000/api)
 
