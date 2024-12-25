@@ -23,7 +23,6 @@ export class ProductService {
     public async getAllProducts(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number, search: string): Promise<Product[]> {
         try {
             const products = await this.productRepository.getAll(sortBy, sortOrder, page, limit, search);
-            console.log(products,"products")
             return products.map(product => ({
                 ...product.toObject(), 
                 createDateTime: this.formatDate(product.createDateTime),
@@ -46,7 +45,6 @@ export class ProductService {
             hour12: false, 
         };
         const a = new Intl.DateTimeFormat('en-GB', options).format(new Date(date)).replace(',', '');
-        console.log(a,"a")
         return a
     }
 
