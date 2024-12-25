@@ -1,4 +1,3 @@
-// interfaces/product.interface.ts
 import { Document } from 'mongoose';
 
 export interface IProduct {

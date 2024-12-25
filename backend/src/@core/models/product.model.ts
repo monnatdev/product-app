@@ -1,4 +1,4 @@
-// models/product.model.ts
+import moment from 'moment-timezone';
 import { model, Model, Schema } from 'mongoose';
 import { IProductDocument } from '../interfaces/product.interface';
 
@@ -8,10 +8,11 @@ const productSchema = new Schema<IProductDocument>({
     price: { type: Number, required: true },
     description:  { type: String, required: false },
     stock:  { type: Number, default: 0 },
-    createDateTime: { type: Date, default: Date.now }, 
-    updateDateTime: { type: Date, default: Date.now }, 
+    createDateTime: { type: Date, default: () => moment().tz('Asia/Bangkok').toDate() }, 
+    updateDateTime: { type: Date, default: () => moment().tz('Asia/Bangkok').toDate() }, 
     status: { type: String, enum: ['active', 'inactive'], default: 'active' }
 });
+
 
 productSchema.pre('save', async function(next) {
     if (!this.no) {

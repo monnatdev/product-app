@@ -10,6 +10,7 @@ const app = express();
 const port = 3000;
 
 const dbUri = `mongodb://mongodb:27017/mydatabase`;
+// const dbUri = `mongodb://localhost:27017/mydatabase`;
 
 mongoose.connect(dbUri).then(() => {
     console.log('Connected to MongoDB');

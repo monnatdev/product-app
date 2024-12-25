@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import { Model } from 'mongoose';
 import { IProduct, IProductDocument } from '../interfaces/product.interface';
 import { ProductModel } from '../models/product.model';
@@ -28,7 +29,8 @@ export class ProductRepository {
     }
 
     public async update(id: string, product: IProduct): Promise<IProductDocument | null> {
-        return this.productRepository.findByIdAndUpdate(id , product, { new: true }).exec();   
+        product.updateDateTime = moment().utc().toDate();
+        return this.productRepository.findByIdAndUpdate(id, product, { new: true }).exec();   
     }
 
     public async getLastProduct(): Promise<IProductDocument | null> {

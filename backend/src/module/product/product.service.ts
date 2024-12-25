@@ -11,7 +11,6 @@ export class ProductService {
  
     public async createProduct(data: IProductDocument): Promise<IProductDocument> {
         try {
-            console.log('xxx')
             const lastProduct = await this.productRepository.getLastProduct();
             data.no = lastProduct ? lastProduct.no + 1 : 1;
             const result = await this.productRepository.create(data);
@@ -24,6 +23,7 @@ export class ProductService {
     public async getAllProducts(sortBy: string, sortOrder: 'asc' | 'desc', page: number, limit: number, search: string): Promise<Product[]> {
         try {
             const products = await this.productRepository.getAll(sortBy, sortOrder, page, limit, search);
+            console.log(products,"products")
             return products.map(product => ({
                 ...product.toObject(), 
                 createDateTime: this.formatDate(product.createDateTime),
@@ -45,7 +45,9 @@ export class ProductService {
             second: '2-digit',
             hour12: false, 
         };
-        return new Intl.DateTimeFormat('en-GB', options).format(new Date(date)).replace(',', '');
+        const a = new Intl.DateTimeFormat('en-GB', options).format(new Date(date)).replace(',', '');
+        console.log(a,"a")
+        return a
     }
 
     public async getProductById(id: string): Promise<IProductDocument | null> {

@@ -19,7 +19,6 @@ class ProductController {
 
     public async createProduct(req: Request, res: Response) {
         try {
-            console.log('yyy')
             const product = await this.productService.createProduct(req.body);
             res.status(201).json(product);
         } catch (error) {
@@ -65,7 +64,6 @@ class ProductController {
 
     public async deleteProduct(req: Request, res: Response) {
         try {
-            console.log(req.params.id,"req.params.id")
             const product = await this.productService.deleteProduct(req.params.id);
             res.status(200).json(product);
         } catch (error) {

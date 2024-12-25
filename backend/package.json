@@ -46,6 +46,7 @@
     "express-validator": "^7.2.0",
     "husky": "^9.1.7",
     "jest-sonar-reporter": "^2.0.0",
+    "moment-timezone": "^0.5.46",
     "mongoose": "^7.0.0",
     "mongoose-sequence": "^6.0.1",
     "sonarqube-scanner": "^4.2.6",
